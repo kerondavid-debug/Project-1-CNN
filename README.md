@@ -21,6 +21,8 @@ Iterative CNN development on CIFAR-10, progressing from a baseline model through
 
 **Best model: Model 4** — 82.5% test accuracy, lowest validation loss. Combining BatchNorm, Dropout, and light data augmentation gave the best generalization.
 
+**Transfer learning comparison (VGG16, in Model 4 notebook):** 61.2% test accuracy — underperformed the custom CNN. VGG16 is pretrained on 224×224 ImageNet images; upscaling 32×32 CIFAR-10 images to fit it loses detail, limiting how much its pretrained features transfer.
+
 ## Key findings (the story)
 1. **Base → Model 1**: Adding BatchNormalization alone gave the single biggest jump (+7 pts test accuracy) by stabilizing training.
 2. **Model 1 → Model 2**: Dropping to 3 conv blocks and using Dropout instead of BatchNorm still improved results slightly — the deeper 4-block base model was likely overcapacity/overfitting for this data size.
@@ -51,4 +53,4 @@ Model_5_Project_1_CNN.ipynb      # 4 blocks + SGD optimizer
 ## Limitations / next steps
 - No learning-rate scheduling tested (fixed LR throughout)
 - Augmentation only tested on the 3-block architecture, not the 4-block one — worth isolating that variable
-- Could try transfer learning (e.g. ResNet-based) as an upper-bound comparison
+- VGG16 transfer learning underperformed (61.2%) at 32×32 input resolution; worth retrying with upsized inputs or a lighter pretrained backbone (e.g. MobileNet)
