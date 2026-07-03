@@ -14,12 +14,12 @@ Iterative CNN development on CIFAR-10, progressing from a baseline model through
 |---|---|---|---|---|---|---|---|---|---|
 | **Base** | Plain CNN, no regularization | 4 (32/64/128/256) | ✗ | ✗ | ✗ | Adam (0.001) | 0.7163 | 0.7048 | 0.8296 |
 | **Model 1** | + BatchNorm after every conv | 4 | ✓ | ✗ | ✗ | Adam (0.001) | 0.7789 | 0.7728 | 0.6821 |
-| **Model 2** | BatchNorm → Dropout, 3 blocks | 3 (32/64/128) | ✗ | ✓ | ✗ | Adam (0.001) | 0.7884 | 0.7869 | 0.6211 |
+| **Model 2** | BatchNorm →  3 blocks | 3 (32/64/128) | ✗ | ✓ | ✗ | Adam (0.001) | 0.7884 | 0.7869 | 0.6211 |
 | **Model 3** | BatchNorm + Dropout + data augmentation | 3 | ✓ | ✓ | ✓ | Adam (0.001) | 0.8249 | **0.8249** | **0.5037** |
 | **Model 4** | Same as Model 3 + VGG16 transfer-learning comparison | 3 | ✓ | ✓ | ✓ | Adam (0.001) | 0.8249 | 0.8249 | 0.5037 |
 | **Model 5** | Back to 4 blocks, no augmentation, optimizer → SGD | 4 | ✓ | ✓ | ✗ | SGD (0.01) | 0.7860 | 0.7788 | 0.6213 |
 
-**Best model: Model 4 / Model 3 (identical CNN)** — 82.49% test accuracy, lowest validation loss. Model 4's notebook contains the exact same CNN as Model 3, plus an added VGG16 transfer-learning comparison.
+**Best model: Model 3 — 82.49% test accuracy, lowest validation loss. Model 4's notebook contains the exact same CNN as Model 3, plus an added VGG16 transfer-learning comparison.
 
 **VGG16 transfer learning (in Model 4 notebook):** 61.24% test accuracy — underperformed the custom CNN. VGG16 is pretrained on 224×224 ImageNet images; using it frozen on 32×32 CIFAR-10 inputs loses detail and limits how well its pretrained features transfer.
 
